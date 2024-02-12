@@ -1,4 +1,5 @@
 import { Moon } from "lucide-react";
+import Link from "next/link";
 export default function Header() {
   return (
     <header className="mt-4">
@@ -11,7 +12,7 @@ export default function Header() {
             </div>
           </div>
         </div>
-        <img src="/logo.png" alt="logo fabien" />
+        <Link href='/'><img src="/logo.png" alt="logo fabien" /></Link>
         <span className="text-2xl">CONTACTS</span>
       </div>
     </header>
