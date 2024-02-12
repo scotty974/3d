@@ -14,7 +14,9 @@ import { GlitchMode, BlendFunction } from "postprocessing";
 import Header from "./components/Header/Header";
 import Link from "next/link";
 import { motion } from "framer-motion";
+
 export default function Home() {
+  
   return (
     <motion.main
     initial={{ opacity: 0 }}
@@ -34,7 +36,7 @@ export default function Home() {
           <PerspectiveCamera position={[0, -2.5, 0]}>
             <Suspense fallback={null}>
               <Sculpture />
-              <EffectComposer>
+              <EffectComposer >
                 <Glitch
                   delay={[1.5, 3.5]}
                   duration={[0.6, 1.0]}
