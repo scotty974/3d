@@ -60,9 +60,9 @@ export default function Home() {
             >
               WORKS
             </Link>
-            <span className="text-4xl hover:underline hover:cursor-pointer">
+            <Link href='/About' className="text-4xl hover:underline hover:cursor-pointer">
               ABOUT
-            </span>
+            </Link>
           </nav>
         </div>
       </section>
