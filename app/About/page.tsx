@@ -14,7 +14,7 @@ export default function Page() {
       <Header></Header>
       <section className="flex justify-between h-screen">
         <div className="flex flex-col mt-2 text-white">
-          <h1 className="text-bigTitle bg-gradient-to-b from-white to-black inline-block text-transparent bg-clip-text">
+          <h1 className="text-bigTitle inline-block text-white">
             About
           </h1>
           <Link

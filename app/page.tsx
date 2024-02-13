@@ -2,7 +2,7 @@
 
 import { Canvas } from "@react-three/fiber";
 import Sculpture from "./components/Sculpture/Sculpture";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { PerspectiveCamera } from "@react-three/drei";
 import {
@@ -19,14 +19,48 @@ import { motion } from "framer-motion";
 export default function Home() {
   const router = useRouter();
   const [delay, setDelay] = useState({ delay: { min: 1, max: 1.5 } });
+  const [mousePosition, setMousePostion] = useState({ x: 0, y: 0 });
+  const [cursorVariant, setcursorVariant] = useState("default");
 
   const handleNavigateWorks = () => {
     setDelay({ delay: { min: 0, max: 0 } });
     setTimeout(() => {
       router.push("/Work");
-    }, 3000);
+    }, 2000);
+  };
+  const handleNavigateAbout = () => {
+    setDelay({ delay: { min: 0, max: 0 } });
+    setTimeout(() => {
+      router.push("/About");
+    }, 2000);
   };
 
+  useEffect(() => {
+    const mouseMove = (e: any) => {
+      setMousePostion({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener("mousemove", mouseMove);
+    return () => {
+      window.removeEventListener("mousemove", mouseMove);
+    };
+  }, []);
+
+  const variants = {
+    default: {
+      x: mousePosition.x - 16,
+      y: mousePosition.y - 16,
+    },
+    text: {
+      height: 150,
+      width: 150,
+      x: mousePosition.x - 75,
+      y: mousePosition.y - 75,
+      mixBlendMode: "difference",
+    },
+  };
+
+  const textEnter = () => setcursorVariant("text");
+  const textExit = () => setcursorVariant("default");
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -66,18 +100,31 @@ export default function Home() {
         <Header></Header>
         <div className="h-screen flex items-center ">
           <nav className="text-white flex justify-between w-full">
-            <span className="text-4xl hover:underline hover:cursor-pointer" onClick={handleNavigateWorks}>
+            <span
+              className="text-4xl hover:underline "
+              onClick={handleNavigateWorks}
+              onMouseEnter={textEnter}
+              onMouseLeave={textExit}
+            >
               WORKS
             </span>
-            <Link
-              href="/About"
-              className="text-4xl hover:underline hover:cursor-pointer"
+
+            <span
+              onClick={handleNavigateAbout}
+              className="text-4xl hover:underline "
+              onMouseEnter={textEnter}
+              onMouseLeave={textExit}
             >
               ABOUT
-            </Link>
+            </span>
           </nav>
         </div>
       </section>
+      <motion.div
+        className="cursor"
+        variants={variants}
+        animate={cursorVariant}
+      ></motion.div>
     </motion.main>
   );
 }
