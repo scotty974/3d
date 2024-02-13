@@ -12,10 +12,13 @@ import {
   Noise,
   Scanline,
 } from "@react-three/postprocessing";
+import { useRouter } from "next/navigation";
 import { Suspense } from "react";
 import { GlitchMode, BlendFunction } from "postprocessing";
 import { useState, useEffect } from "react";
 export default function Page() {
+  const router = useRouter();
+  const [delay, setDelay] = useState({ delay: { min: 1, max: 1.5 } });
   const [mousePosition, setMousePostion] = useState({ x: 0, y: 0 });
   const [cursorVariant, setcursorVariant] = useState("default");
   useEffect(() => {
@@ -43,6 +46,12 @@ export default function Page() {
   };
   const textEnter = () => setcursorVariant("text");
   const textExit = () => setcursorVariant("default");
+  const handleNavigateHome = () => {
+    setDelay({ delay: { min: 0, max: 0 } });
+    setTimeout(() => {
+      router.push("/");
+    }, 2000);
+  };
   return (
     <motion.main
       initial={{ opacity: 0 }}
@@ -64,7 +73,7 @@ export default function Page() {
               <Sculpture />
               <EffectComposer>
                 <Glitch
-                  delay={[0.5, 1.5]}
+                  delay={[delay.delay.min, delay.delay.max]}
                   duration={[0.6, 1.0]}
                   strength={[0.3, 1]}
                   ratio={0.85}
@@ -105,14 +114,14 @@ export default function Page() {
             </div>
           </div>
           <div className="flex justify-center items-center">
-            <Link
-              href={"/"}
+            <span
+             onClick={handleNavigateHome}
               className="text-white text-4xl hover:underline "
               onMouseEnter={textEnter}
               onMouseLeave={textExit}
             >
               HOME
-            </Link>
+            </span>
           </div>
           <motion.div
             className="cursor"
