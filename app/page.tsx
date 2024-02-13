@@ -17,26 +17,27 @@ import Header from "./components/Header/Header";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { Vector2 } from "three";
+import { max, min } from "three/examples/jsm/nodes/Nodes.js";
 interface DelayState {
   min: number;
   max: number;
 }
 export default function Home() {
   const router = useRouter();
-  const [delay, setDelay] = useState<DelayState>({ min: 1, max: 1.5 } );
+  const [delay, setDelay] = useState<DelayState>({ min: 1, max: 1.5 });
   const [mousePosition, setMousePostion] = useState({ x: 0, y: 0 });
   const [cursorVariant, setcursorVariant] = useState("default");
   const [isMobile, setIsMobile] = useState(false);
 
   const handleNavigateWorks = () => {
-    setDelay( { min: 0, max: 0 } );
+    setDelay({ min: 0, max: 0 });
     setTimeout(() => {
       router.push("/Work");
     }, 2000);
   };
 
   const handleNavigateAbout = () => {
-    setDelay( { min: 0, max: 0 } );
+    setDelay({ min: 0, max: 0 });
     setTimeout(() => {
       router.push("/About");
     }, 2000);
@@ -104,9 +105,9 @@ export default function Home() {
                 <Sculpture />
                 <EffectComposer>
                   <Glitch
-                    delay={[delay.min, delay.max]}
-                    duration={[0.6, 1.0]}
-                    strength={[0.3, 1]}
+                    delay={new Vector2(delay.min, delay.max)}
+                    duration={new Vector2(0.6, 1.0)}
+                    strength={new Vector2(0.3, 1)}
                     ratio={0.85}
                     mode={GlitchMode.SPORADIC}
                     active
