@@ -114,7 +114,7 @@ export default function Page() {
         </div>
         <div className="flex justify-center items-center">
           <p
-            className="text-white text-2xl w-96 font-sans leading-relaxed"
+            className="text-white text-2xl  font-sans leading-relaxed"
             onMouseEnter={textEnter}
             onMouseLeave={textExit}
           >
