@@ -45,7 +45,7 @@ export default function Home() {
     };
   }, []);
 
-  const variants = {
+  const variants: any = {
     default: {
       x: mousePosition.x - 16,
       y: mousePosition.y - 16,
@@ -62,69 +62,71 @@ export default function Home() {
   const textEnter = () => setcursorVariant("text");
   const textExit = () => setcursorVariant("default");
   return (
-    <motion.main
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-      className="min-h-screen "
-    >
-      <div className="flex justify-center items-center absolute -z-10">
-        <Canvas dpr={[1, 2]} shadows>
-          <ambientLight intensity={1.5} />
-          <directionalLight
-            color="#7f00ff"
-            position={[0, 0, 10]}
-            intensity={2}
-          />
-          <PerspectiveCamera position={[0, -2.5, 0]}>
-            <Suspense fallback={null}>
-              <Sculpture />
-              <EffectComposer>
-                <Glitch
-                  delay={[delay.delay.min, delay.delay.max]}
-                  duration={[0.6, 1.0]}
-                  strength={[0.3, 1]}
-                  ratio={0.85}
-                  mode={GlitchMode.SPORADIC}
-                  active
-                />
-                <Noise premultiply blendFunction={BlendFunction.ADD} />
-                <Scanline density={8.5} />
-              </EffectComposer>
-            </Suspense>
-          </PerspectiveCamera>
-        </Canvas>
-      </div>
-      <section className="container m-auto z-50 min-h-screen">
-        <Header></Header>
-        <div className="h-screen flex items-center ">
-          <nav className="text-white flex justify-between w-full">
-            <span
-              className="text-4xl hover:underline "
-              onClick={handleNavigateWorks}
-              onMouseEnter={textEnter}
-              onMouseLeave={textExit}
-            >
-              WORKS
-            </span>
-
-            <span
-              onClick={handleNavigateAbout}
-              className="text-4xl hover:underline "
-              onMouseEnter={textEnter}
-              onMouseLeave={textExit}
-            >
-              ABOUT
-            </span>
-          </nav>
+    <>
+      <motion.main
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.5 }}
+        className="min-h-screen "
+      >
+        <div className="flex justify-center items-center absolute -z-10">
+          <Canvas dpr={[1, 2]} shadows>
+            <ambientLight intensity={1.5} />
+            <directionalLight
+              color="#7f00ff"
+              position={[0, 0, 10]}
+              intensity={2}
+            />
+            <PerspectiveCamera position={[0, -2.5, 0]}>
+              <Suspense fallback={null}>
+                <Sculpture />
+                <EffectComposer>
+                  <Glitch
+                    delay={[delay.delay.min, delay.delay.max]}
+                    duration={[0.6, 1.0]}
+                    strength={[0.3, 1]}
+                    ratio={0.85}
+                    mode={GlitchMode.SPORADIC}
+                    active
+                  />
+                  <Noise premultiply blendFunction={BlendFunction.ADD} />
+                  <Scanline density={8.5} />
+                </EffectComposer>
+              </Suspense>
+            </PerspectiveCamera>
+          </Canvas>
         </div>
-      </section>
+        <section className="container m-auto z-50 min-h-screen">
+          <Header></Header>
+          <div className="h-screen flex items-center ">
+            <nav className="text-white flex justify-between w-full">
+              <span
+                className="text-4xl hover:underline "
+                onClick={handleNavigateWorks}
+                onMouseEnter={textEnter}
+                onMouseLeave={textExit}
+              >
+                WORKS
+              </span>
+
+              <span
+                onClick={handleNavigateAbout}
+                className="text-4xl hover:underline "
+                onMouseEnter={textEnter}
+                onMouseLeave={textExit}
+              >
+                ABOUT
+              </span>
+            </nav>
+          </div>
+        </section>
+      </motion.main>
       <motion.div
         className="cursor"
         variants={variants}
         animate={cursorVariant}
       ></motion.div>
-    </motion.main>
+    </>
   );
 }
