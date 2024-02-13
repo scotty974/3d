@@ -8,8 +8,8 @@ export default function Header() {
       <div className="text-white flex justify-between">
         <div className="flex items-center ">
           <div className="flex items-center gap-5">
-            <span className="text-2xl">CREATIVE</span>
-            <p className="text-white text-center">Don't move the mouse</p>
+            
+            <span className="text-white text-center text-2xl">Don't move the mouse</span>
           </div>
         </div>
         <Link href="/">

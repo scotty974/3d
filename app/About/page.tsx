@@ -3,7 +3,7 @@ import Header from "../components/Header/Header";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState, Suspense} from "react";
+import { useEffect, useState, Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import { PerspectiveCamera } from "@react-three/drei";
 import Sculpture from "../components/Sculpture/Sculpture";
@@ -97,27 +97,32 @@ export default function Page() {
             About
           </h1>
           <div>
-          <span
-            className="text-white text-4xl hover:underline hover:cursor-pointer"
-            onMouseEnter={textEnter}
-            onMouseLeave={textExit}
-            onClick={handleNavigateHome}
-          >
-            HOME
-          </span>
+            <span
+              className="text-white text-4xl hover:underline hover:cursor-pointer"
+              onMouseEnter={textEnter}
+              onMouseLeave={textExit}
+              onClick={handleNavigateHome}
+            >
+              HOME
+            </span>
           </div>
-         
         </div>
         <div className="flex justify-center items-center">
           <p
-            className="text-white text-2xl w-96"
+            className="text-white text-2xl w-96 font-sans leading-relaxed"
             onMouseEnter={textEnter}
             onMouseLeave={textExit}
           >
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorum
-            quos assumenda iure vero adipisci quae voluptas vitae laudantium, ad
-            iusto aliquam dicta nostrum porro eius consequatur. Repudiandae ut
-            aut laboriosam?
+            Welcome to my world of coding! I am a passionate and dedicated
+            junior front-end developer, eager to explore and contribute to the
+            ever-evolving realm of web development. With a strong foundation in
+            HTML, CSS, and JavaScript, I am on a journey to enhance my skills
+            and create engaging user experiences. My curiosity and enthusiasm
+            drive me to stay abreast of the latest trends and technologies in
+            the world of front-end development. Join me on this exciting journey
+            as I navigate through the intricacies of coding, continuously
+            learning and evolving to craft visually appealing and functional
+            websites.
           </p>
         </div>
       </section>
