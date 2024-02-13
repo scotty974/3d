@@ -15,7 +15,7 @@ export default function Header() {
         <Link href="/">
           <img src="/logo.png" alt="logo fabien" />
         </Link>
-        <span className="text-2xl">CONTACTS</span>
+        <a className="text-2xl hover:underline" href="https://www.linkedin.com/in/fabien-etheve-7125a0226/" target="_blank">CONTACTS</a>
       </div>
     </header>
   );

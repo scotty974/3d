@@ -1,9 +1,10 @@
 "use client";
 
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Canvas } from "@react-three/fiber";
 import Sculpture from "./components/Sculpture/Sculpture";
-import { Suspense, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { Suspense } from "react";
 import { PerspectiveCamera } from "@react-three/drei";
 import {
   EffectComposer,
@@ -21,6 +22,7 @@ export default function Home() {
   const [delay, setDelay] = useState({ delay: { min: 1, max: 1.5 } });
   const [mousePosition, setMousePostion] = useState({ x: 0, y: 0 });
   const [cursorVariant, setcursorVariant] = useState("default");
+  const [isMobile, setIsMobile] = useState(false);
 
   const handleNavigateWorks = () => {
     setDelay({ delay: { min: 0, max: 0 } });
@@ -28,6 +30,7 @@ export default function Home() {
       router.push("/Work");
     }, 2000);
   };
+
   const handleNavigateAbout = () => {
     setDelay({ delay: { min: 0, max: 0 } });
     setTimeout(() => {
@@ -39,9 +42,19 @@ export default function Home() {
     const mouseMove = (e: any) => {
       setMousePostion({ x: e.clientX, y: e.clientY });
     };
+
+    const checkMobile = () => {
+      setIsMobile(window.matchMedia("(max-width: 768px)").matches);
+    };
+
+    checkMobile();
+
     window.addEventListener("mousemove", mouseMove);
+    window.addEventListener("resize", checkMobile);
+
     return () => {
       window.removeEventListener("mousemove", mouseMove);
+      window.removeEventListener("resize", checkMobile);
     };
   }, []);
 
@@ -61,7 +74,11 @@ export default function Home() {
 
   const textEnter = () => setcursorVariant("text");
   const textExit = () => setcursorVariant("default");
-  return (
+  return isMobile ? (
+    <div className="h-screen flex justify-center items-center">
+      <h1 className="text-white">This site is only available on desktop</h1>
+    </div>
+  ) : (
     <>
       <motion.main
         initial={{ opacity: 0 }}
@@ -119,11 +136,8 @@ export default function Home() {
                 ABOUT
               </span>
             </nav>
-            
           </div>
-          
         </section>
-       
       </motion.main>
       <motion.div
         className="cursor"
