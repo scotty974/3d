@@ -99,8 +99,8 @@ export default function Home() {
         </div>
         <section className="container m-auto z-50 min-h-screen">
           <Header></Header>
-          <div className="h-screen flex items-center ">
-            <nav className="text-white flex justify-between w-full">
+          <div className="min-h-screen flex items-center ">
+            <nav className="text-white flex justify-between w-full items-center h-screen">
               <span
                 className="text-4xl hover:underline "
                 onClick={handleNavigateWorks}
@@ -119,8 +119,11 @@ export default function Home() {
                 ABOUT
               </span>
             </nav>
+            
           </div>
+          
         </section>
+       
       </motion.main>
       <motion.div
         className="cursor"
